@@ -1,0 +1,11 @@
+*.suo
+*.user
+*.ncb
+**/*.dll
+**/*.vcxproj
+**/*.filters
+**/*.user
+.vs
+Debug/
+Release/
+**/Debug
