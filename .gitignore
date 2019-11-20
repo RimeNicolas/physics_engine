@@ -1,10 +1,14 @@
+# User-specific files
+*.rsuser
 *.suo
 *.user
-*.ncb
+*.userosscache
+*.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
 **/*.dll
-**/*.vcxproj
-**/*.filters
-**/*.user
 .vs
 Debug/
 Release/
