@@ -4,3 +4,4 @@
 #include <GL/glew.h>
 
 void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius);
+void drawQuad(float vertices[]);

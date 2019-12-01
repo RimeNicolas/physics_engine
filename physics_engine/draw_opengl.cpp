@@ -1,4 +1,6 @@
 #include "draw_opengl.h"
+#include <thread>
+#include "engine.h"
 
 int draw_opengl()
 {
@@ -29,32 +31,53 @@ int draw_opengl()
 	glMatrixMode(GL_MODELVIEW); // (default matrix mode) modelview matrix defines how your objects are transformed (meaning translation, rotation and scaling) in your world
 	glLoadIdentity(); // same as above comment
 
+	float vertices[] =
+	{
+		300, 300, 0.0, // top right corner
+		0, 300, 0.0, // top left corner
+		0, 0, 0.0, // bottom left corner
+		300, 0, 0.0 // bottom right corner
+	};
+
+	double dt(0.01);
+	Engine engine(10.0, dt);
+	engine.addCircle({ 0,0 }, { 0,0 }, 100);
+
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();
-
-	double x(0.0);
-	double y(0.0);
-	double dx = 0.5;
 
 	// Loop until the user closes the window
 	while (!glfwWindowShouldClose(window))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		if ((std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - start)).count() > 16.0*dt)
+		{
+			glClear(GL_COLOR_BUFFER_BIT);
+			
+			std::vector<Circle> circles = engine.getCircle();
+			v2 position = circles[0].getPosition();
+			double radius = circles[0].getRadius();
+			
+			// render OpenGL here
+			drawCircle(position[0] + SCREEN_WIDTH / 2.0, position[1] + SCREEN_HEIGHT / 2.0, 0.0, radius);
+			
+			// Swap front and back buffers
+			glfwSwapBuffers(window);
 
-		// render OpenGL here
-		drawCircle(x + SCREEN_WIDTH / 2.0, y + SCREEN_HEIGHT / 2.0, 0.0, 120.0);
-
-		// Swap front and back buffers
-		glfwSwapBuffers(window);
-
+			double elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>
+				(std::chrono::system_clock::now() - start).count();
+			std::cout << "elapsed time: " << elapsed_seconds << "s\n";
+			std::cout << position[0] << "\n";
+			std::cout << position[1] << "\n";
+		}
+		
+		if ((std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - start)).count() > dt)
+		{
+			engine.update();
+		}
+		
 		// Poll for and process events
 		glfwPollEvents();
 
-		end = std::chrono::system_clock::now();
-		int elapsed_seconds = std::chrono::duration_cast<std::chrono::seconds>
-			(end - start).count();
-		std::cout << "elapsed time: " << elapsed_seconds << "s\n";
-		x += dx;
 	}
 
 	glfwTerminate();

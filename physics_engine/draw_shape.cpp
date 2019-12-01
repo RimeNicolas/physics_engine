@@ -1,8 +1,9 @@
 #include "draw_shape.h"
+#include <array>
 
 void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius)
 {
-	const GLint numberOfSides = 10;
+	const GLint numberOfSides = 100;
 	const GLint numberOfVertices = numberOfSides + 2;
 
 	GLfloat twicePi = 2.0f * M_PI;
@@ -36,3 +37,12 @@ void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius)
 	glDrawArrays(GL_TRIANGLE_FAN, 0, numberOfVertices);
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
+
+void drawQuad(float vertices[]) {
+	glEnableClientState(GL_VERTEX_ARRAY); // tell OpenGL that you're using a vertex array for fixed-function attribute
+	glVertexPointer(3, GL_FLOAT, 0, vertices); // point to the vertices to be used
+	glDrawArrays(GL_QUADS, 0, 4); // draw the vertixes
+	glDisableClientState(GL_VERTEX_ARRAY); // tell OpenGL that you're finished using the vertex arrayattribute
+}
+
+
