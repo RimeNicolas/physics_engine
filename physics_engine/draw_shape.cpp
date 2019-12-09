@@ -1,5 +1,4 @@
 #include "draw_shape.h"
-#include <array>
 
 void drawCircle(GLfloat x, GLfloat y, GLfloat z, GLfloat radius)
 {
@@ -45,4 +44,13 @@ void drawQuad(float vertices[]) {
 	glDisableClientState(GL_VERTEX_ARRAY); // tell OpenGL that you're finished using the vertex arrayattribute
 }
 
-
+void drawRectangle(float x, float y, float z, float height, float width) {
+	float vertices[] =
+	{
+		x + width/2.0, y + height/2.0, z, // top right corner
+		x - width/2.0, y + height/2.0, z, // top left corner
+		x - width/2.0, y - height/2.0, z, // bottom left corner
+		x + width/2.0, y - height/2.0, z  // bottom right corner
+	};
+	drawQuad(vertices);
+}

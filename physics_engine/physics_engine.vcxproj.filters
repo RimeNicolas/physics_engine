@@ -21,13 +21,13 @@
     <ClCompile Include="draw_shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw_opengl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,13 +35,13 @@
     <ClInclude Include="draw_shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="draw_opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

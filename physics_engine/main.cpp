@@ -1,19 +1,25 @@
-#include "draw_opengl.h"
+#include "opengl_context.h"
 #include "object.h"
 #include "engine.h"
 
 int main(void)
 {
-	draw_opengl();
+	std::string filePath = "../output/analytical.txt";
+	//std::string filePath = "../output/numerical.txt";
 
-	/*
-	v2 position = { 1, 1 };
-	v2 speed = { 1, 1 };
-	Rectangle rect(position, speed, 10, 10);
-	std::cout << rect.getPosition()[0] << " " << rect.getPosition()[1] << "\n";
-	*/
+	double dt(0.01);
+	double finalTime(5.0);
+	Engine engine(finalTime, dt);
+	engine.initEngine();
+
+	OpenGLContext context;
+	context.initOpenGL();
+	context.draw(engine);
 	
 	return 0;
 }
+
+
+
 
 
